@@ -29,7 +29,7 @@ $user = Yii::$app->user;
                 <nav class="navbar navbar-static-top">
                     <div class="container">
                         <div class="navbar-header">
-                            <?= Html::a('My App', Yii::$app->homeUrl, ['class' => 'navbar-brand']) ?>
+                            <?= Html::a('Cashflow', Yii::$app->homeUrl, ['class' => 'navbar-brand']) ?>
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                                 <i class="fa fa-bars"></i>
                             </button>
@@ -47,6 +47,19 @@ $user = Yii::$app->user;
                                         <?= Html::a('Sign Up', ['/user/signup'], ['class'=>'btn btn-success'])?>
                                     </li>
                                 <?php else: ?>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#">Add Book</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Add Team</a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                     <li class="dropdown user user-menu">
                                         <!-- Menu Toggle Button -->
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -74,7 +87,7 @@ $user = Yii::$app->user;
             <div class="content-wrapper">
                 <div class="container">
                     <!-- Content Header (Page header) -->
-                    <section class="content-header">
+                    <section class="content-header" style="display: none;">
                         <h1><?= $this->title ?><small><?= $smallTitle ?></small></h1>
                         <?=
                         Breadcrumbs::widget([

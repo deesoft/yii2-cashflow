@@ -6,25 +6,23 @@ use yii\helpers\Url;
 
 $this->title = 'My Yii Application';
 
-$books = [];
-$books[] = [
-    'url' => '#',
-    'name' => 'Create new book',
-    'description' => ''
-];
 ?>
 <div class="row">
+    <?php foreach ($teams as $team): ?>
     <div class="box box-solid">
         <div class="box-header">
-            <h3 class="box-title"><i class="fa fa-user"></i> Personal Books</h3>
+            <h3 class="box-title"><i class="fa fa-user"></i> &nbsp; <?= $team['name'] ?></h3>
         </div>
         <div class="box-body">
-            <?php foreach (array_chunk($books, 4) as $chunk): ?>
+            <?php foreach (array_chunk($team['books'], 4) as $chunk): ?>
                 <div class="row">
                     <?php foreach ($chunk as $book): ?>
                         <div class="col-md-3">
-                            <a href="<?= Url::to($book['url']) ?>">
-                                <div class="small-box bg-gray">
+                            <?php
+                            $url = isset($book['id']) ? ['view','id'=>$book['id']] : ['create', 'team_id' => $team['id']];
+                            ?>
+                            <a href="<?= Url::to($url) ?>">
+                                <div class="small-box bg-<?= isset($book['id']) ? 'green':'gray'?>">
                                     <div class="inner">
                                         <h4><?= $book['name'] ?></h4>
                                         <p>&nbsp;<?= $book['description'] ?></p>
@@ -40,4 +38,5 @@ $books[] = [
             <?php endforeach; ?>
         </div>
     </div>
+    <?php endforeach; ?>
 </div>

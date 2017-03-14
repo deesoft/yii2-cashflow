@@ -2,9 +2,9 @@ require 'yaml'
 require 'fileutils'
 
 domains = {
-  frontend: 'blog.master.dev',
-  backend:  'master.dev'
-  rest:  'api.master.dev'
+  frontend: 'blog.cashflow.dev',
+  backend:  'cashflow.dev'
+  rest:  'api.cashflow.dev'
 }
 
 config = {
@@ -49,7 +49,7 @@ Vagrant.configure(2) do |config|
   # network settings
   config.vm.network 'private_network', ip: options['ip']
 
-  # sync: folder 'yii2-app-master' (host machine) -> folder '/app' (guest machine)
+  # sync: folder 'yii2-cashflow' (host machine) -> folder '/app' (guest machine)
   config.vm.synced_folder './', '/app', owner: 'vagrant', group: 'vagrant'
 
   # disable folder '/vagrant' (guest machine)

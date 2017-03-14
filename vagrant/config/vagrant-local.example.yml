@@ -10,10 +10,10 @@ timezone: Asia/Jakarta
 box_check_update: false
 
 # Virtual machine name
-machine_name: master
+machine_name: cashflow
 
 # Virtual machine IP
-ip: 192.168.83.138
+ip: 192.168.83.139
 
 # Virtual machine CPU cores number
 cpus: 1

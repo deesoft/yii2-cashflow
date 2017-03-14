@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d7479e888f69b336d3c9fe9ce968ba0b",
-    "content-hash": "4cb29390e682c81180c23b5afed9516d",
+    "hash": "2eed39b830c5a3f4ff15adc15cbb002c",
+    "content-hash": "a6f85abe11606c024fa64b93dde669ba",
     "packages": [
         {
             "name": "bower-asset/adminlte",
@@ -1114,12 +1114,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "9368db17a7934412735a7619138af80a11216f4d"
+                "reference": "5708f8ac0fc4032b91e5b549c716a83e95d0b170"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/9368db17a7934412735a7619138af80a11216f4d",
-                "reference": "9368db17a7934412735a7619138af80a11216f4d",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/5708f8ac0fc4032b91e5b549c716a83e95d0b170",
+                "reference": "5708f8ac0fc4032b91e5b549c716a83e95d0b170",
                 "shasum": ""
             },
             "require": {
@@ -1206,7 +1206,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2017-03-13 19:12:32"
+            "time": "2017-03-14 12:37:54"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -1759,31 +1759,31 @@
         },
         {
             "name": "deesoft/yii2-gii",
-            "version": "1.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deesoft/yii2-gii.git",
-                "reference": "cce6579e6c521aafa6f9f41e641ef788a1d3e38a"
+                "reference": "e1e57cc1b3a6dc219b9d4a253522ddce6e35a213"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deesoft/yii2-gii/zipball/cce6579e6c521aafa6f9f41e641ef788a1d3e38a",
-                "reference": "cce6579e6c521aafa6f9f41e641ef788a1d3e38a",
+                "url": "https://api.github.com/repos/deesoft/yii2-gii/zipball/e1e57cc1b3a6dc219b9d4a253522ddce6e35a213",
+                "reference": "e1e57cc1b3a6dc219b9d4a253522ddce6e35a213",
                 "shasum": ""
             },
             "require": {
-                "yiisoft/yii2": "~2.0",
+                "yiisoft/yii2": ">=2.0.6",
                 "yiisoft/yii2-gii": "~2.0"
             },
             "type": "yii2-extension",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "mdm\\gii\\": ""
+                    "dee\\gii\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1801,7 +1801,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2014-11-02 15:40:02"
+            "time": "2016-05-26 03:34:13"
         },
         {
             "name": "doctrine/instantiator",
