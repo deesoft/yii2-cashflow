@@ -15,14 +15,16 @@ use Yii;
  * @property string $description
  * @property integer $user_id
  * @property string $privacy
- * @property integer $created_at
- * @property integer $updated_at
  *
- * @property User[] $members
+ * @property User[] $users
+ * @property Members[] $members
  * @property Team $team
+ * @property Transaction[] $transactions
  */
-class Book extends \yii\db\ActiveRecord
+class Book extends \common\classes\ActiveRecord
 {
+
+    public $is_admin = false;
 
     /**
      * @inheritdoc
@@ -38,8 +40,8 @@ class Book extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'user_id', 'created_at', 'updated_at'], 'required'],
-            [['photo_id', 'team_id', 'user_id', 'created_at', 'updated_at'], 'integer'],
+            [['name', 'user_id'], 'required'],
+            [['photo_id', 'team_id', 'user_id'], 'integer'],
             [['description'], 'string'],
             [['type', 'privacy'], 'string', 'max' => 8],
             [['name'], 'string', 'max' => 255],
@@ -60,8 +62,6 @@ class Book extends \yii\db\ActiveRecord
             'description' => 'Description',
             'user_id' => 'User ID',
             'privacy' => 'Privacy',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
         ];
     }
 
@@ -69,7 +69,7 @@ class Book extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getMembers()
+    public function getUsers()
     {
         return $this->hasMany(User::className(), ['id' => 'user_id'])
                 ->viaTable('{{%member}}', ['book_id' => 'id']);
@@ -79,8 +79,26 @@ class Book extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
+    public function getMembers()
+    {
+        return $this->hasMany(Member::className(), ['book_id' => 'id']);
+    }
+
+    /**
+     *
+     * @return \yii\db\ActiveQuery
+     */
     public function getTeam()
     {
         return $this->hasOne(Team::className(), ['id' => 'team_id']);
+    }
+
+    /**
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTransactions()
+    {
+        return $this->hasMany(Transaction::className(), ['book_id' => 'id']);
     }
 }

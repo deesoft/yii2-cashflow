@@ -32,7 +32,8 @@
         "mdmsoft/yii2-widgets": "~1.0",
         "firebase/php-jwt": "~2.0|~3.0|~4.0",
         "google/auth": "^0.11.0",
-        "bower-asset/adminlte": "~2.3.11"
+        "bower-asset/adminlte": "~2.3.11",
+        "deesoft/yii2-angularjs":"~1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -26,7 +26,7 @@ return [
         ],
         'firebase'=>[
             'class' => 'common\classes\Firebase',
-            'serviceAccount' => '@app/config/firebase-credential.json'
+            'serviceAccount' => '@common/config/firebase-credential.json'
         ],
         'authClientCollection' => [
             'clients' => [

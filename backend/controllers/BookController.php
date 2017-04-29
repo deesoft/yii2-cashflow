@@ -34,6 +34,7 @@ class BookController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
+                    'create' => ['post'],
                 ],
             ],
         ];
@@ -48,14 +49,11 @@ class BookController extends Controller
     {
         $user_id = Yii::$app->user->id;
         $books = Book::find()->alias('b')
-            ->joinWith('members u')
+            ->joinWith('members m')
             ->where(['b.team_id' => null, 'b.type' => 'book'])
-            ->andWhere(['OR', ['b.user_id' => $user_id], ['u.id' => $user_id]])
+            ->andWhere(['OR', ['b.user_id' => $user_id], ['m.user_id' => $user_id]])
             ->all();
-        $books[] = [
-            'name' => 'Create new book',
-            'description' => ''
-        ];
+        $books[] = false;
         $teams = [
             [
                 'id' => null,
@@ -64,17 +62,21 @@ class BookController extends Controller
             ]
         ];
         $ts = Team::find()->alias('t')
-            ->joinWith('members u')
+            ->select(['t.*', 'is_admin' => "([[t.user_id]]='$user_id' OR [[m.is_admin]]=1)"])
+            ->joinWith('members m')
             ->with('books')
             ->where(['t.team_id' => null, 't.type' => 'team'])
-            ->andWhere(['OR', ['t.user_id' => $user_id], ['u.id' => $user_id]])
+            ->andWhere(['OR', ['t.user_id' => $user_id], ['m.user_id' => $user_id]])
             ->all();
+        /* @var $team Team */
+        $itemTeams = [];
         foreach ($ts as $team) {
             $books = $team->books;
-            $books[] = [
-                'name' => 'Create new book',
-                'description' => ''
-            ];
+            if ($team->is_admin) {
+                $books[] = false;
+                $itemTeams[$team->id] = $team->name;
+            }
+            
             $teams[] = [
                 'id' => $team->id,
                 'name' => $team->name,
@@ -82,22 +84,30 @@ class BookController extends Controller
             ];
         }
         return $this->render('index', [
-                'teams' => $teams
+                'teams' => $teams,
+                'itemTeams' => $itemTeams,
         ]);
     }
 
-    public function actionCreate($team_id=null)
+    public function actionCreate()
     {
+        Yii::$app->getResponse()->format = 'json';
         $model = new Book([
-            'team_id' => $team_id,
+            'user_id' => Yii::$app->user->id,
         ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            return $this->redirect(['view','id'=>$model->id]);
         }
+        return $model->errors;
+    }
+
+    public function actionView($id)
+    {
+        $model = Book::findOne($id);
+
+        return $this->render('view', [
+            'model'=>$model,
+        ]);
     }
 }

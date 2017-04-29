@@ -15,7 +15,7 @@ use common\helpers\Job;
  * @property string $raw_data
  * @property User $user
  */
-class Client extends \yii\db\ActiveRecord
+class Client extends \common\classes\ActiveRecord
 {
     /**
      *

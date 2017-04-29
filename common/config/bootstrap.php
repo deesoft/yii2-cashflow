@@ -8,3 +8,4 @@ Yii::setAlias('@task', dirname(dirname(__DIR__)) . '/task');
 
 Yii::$classMap['yii\helpers\Url'] = '@common/helpers/Url.php';
 Yii::$container->set('yii\web\User', 'common\classes\User');
+Yii::$container->set('yii\web\UrlManager', 'common\classes\UrlManager');

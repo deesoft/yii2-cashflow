@@ -21,19 +21,19 @@ class m170314_043443_create_cashflow_tables extends Migration
             'description' => $this->text(),
             'user_id' => $this->integer()->notNull(),
             'privacy' => $this->string(8)->notNull()->defaultValue('private'), // private, public
-            'created_at' => $this->integer()->notNull(),
-            'updated_at' => $this->integer()->notNull(),
         ], $tableOptions);
 
         $this->createTable('{{%member}}', [
-            'id' => $this->primaryKey(),
             'book_id' => $this->integer()->notNull(),
             'user_id'=> $this->integer()->notNull(),
+            'is_admin' => $this->boolean()->defaultValue(false),
             'can_add' => $this->boolean()->defaultValue(false),
             'can_update_own' => $this->boolean()->defaultValue(false),
             'can_delete_own' => $this->boolean()->defaultValue(false),
             'can_update' => $this->boolean()->defaultValue(false),
             'can_delete' => $this->boolean()->defaultValue(false),
+
+            'PRIMARY KEY ([[book_id]], [[user_id]])',
         ], $tableOptions);
 
         $this->createTable('{{%coa}}', [

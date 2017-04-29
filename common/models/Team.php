@@ -15,15 +15,15 @@ use Yii;
  * @property string $description
  * @property integer $user_id
  * @property string $privacy
- * @property integer $created_at
- * @property integer $updated_at
  *
- * @property User[] $members
+ * @property User[] $users
+ * @property Members[] $members
  * @property Book[] $books
  */
-class Team extends \yii\db\ActiveRecord
+class Team extends \common\classes\ActiveRecord
 {
 
+    public $is_admin = false;
     /**
      * @inheritdoc
      */
@@ -43,8 +43,8 @@ class Team extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'user_id', 'created_at', 'updated_at'], 'required'],
-            [['photo_id', 'team_id', 'user_id', 'created_at', 'updated_at'], 'integer'],
+            [['name', 'user_id',], 'required'],
+            [['photo_id', 'team_id', 'user_id'], 'integer'],
             [['description'], 'string'],
             [['type', 'privacy'], 'string', 'max' => 8],
             [['name'], 'string', 'max' => 255],
@@ -65,9 +65,17 @@ class Team extends \yii\db\ActiveRecord
             'description' => 'Description',
             'user_id' => 'User ID',
             'privacy' => 'Privacy',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
         ];
+    }
+
+    /**
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsers()
+    {
+        return $this->hasMany(User::className(), ['id' => 'user_id'])
+                ->viaTable('{{%member}}', ['book_id' => 'id']);
     }
 
     /**
@@ -76,8 +84,7 @@ class Team extends \yii\db\ActiveRecord
      */
     public function getMembers()
     {
-        return $this->hasMany(User::className(), ['id' => 'user_id'])
-                ->viaTable('{{%member}}', ['book_id' => 'id']);
+        return $this->hasMany(Member::className(), ['book_id' => 'id']);
     }
 
     /**

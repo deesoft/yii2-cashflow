@@ -7,7 +7,6 @@ use Yii;
 /**
  * This is the model class for table "member".
  *
- * @property integer $id
  * @property integer $book_id
  * @property integer $user_id
  * @property integer $can_add
@@ -16,7 +15,7 @@ use Yii;
  * @property integer $can_update
  * @property integer $can_delete
  */
-class Member extends \yii\db\ActiveRecord
+class Member extends \common\classes\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -43,7 +42,6 @@ class Member extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
             'book_id' => 'Book ID',
             'user_id' => 'User ID',
             'can_create' => 'Can Create',

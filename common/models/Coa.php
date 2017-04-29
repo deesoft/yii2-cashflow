@@ -15,7 +15,7 @@ use Yii;
  * @property bool $visibility
  * @property string $description
  */
-class Coa extends \yii\db\ActiveRecord
+class Coa extends \common\classes\ActiveRecord
 {
     /**
      * @inheritdoc

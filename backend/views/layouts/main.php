@@ -11,10 +11,11 @@ $adminLte = AdminlteAsset::register($this);
 $baseUrl = $adminLte->baseUrl;
 $smallTitle = isset($this->params['smallTitle']) ? $this->params['smallTitle'] : '';
 $user = Yii::$app->user;
+$ngAppName = isset($this->params['ngApp']) ? $this->params['ngApp'] : '';
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
+<html lang="<?= Yii::$app->language ?>" ng-app="<?= $ngAppName ?>">
     <head>
         <meta charset="<?= Yii::$app->charset ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +23,7 @@ $user = Yii::$app->user;
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>
-    <body class="hold-transition skin-blue layout-top-nav">
+    <body class="hold-transition skin-green-light layout-top-nav">
         <?php $this->beginBody() ?>
         <div class="wrapper">
             <header class="main-header">

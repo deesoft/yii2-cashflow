@@ -17,7 +17,7 @@ use Yii;
  * @property double $ammount
  * @property integer $detail
  */
-class Transaction extends \yii\db\ActiveRecord
+class Transaction extends \common\classes\ActiveRecord
 {
     /**
      * @inheritdoc

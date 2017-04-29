@@ -10,7 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $description
  */
-class TransactionGroup extends \yii\db\ActiveRecord
+class TransactionGroup extends \common\classes\ActiveRecord
 {
     /**
      * @inheritdoc

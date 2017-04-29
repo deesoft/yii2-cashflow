@@ -14,9 +14,9 @@ class Url extends BaseUrl
 {
     public static $app;
     public static $apps = [
-        'backend',
-        'frontend',
-        'rest'
+        'backend' => 'backendUrlManager',
+        'frontend' => 'frontendUrlManager',
+        'rest' => 'restUrlManager',
     ];
 
     /**
@@ -26,13 +26,14 @@ class Url extends BaseUrl
     {
         $route = (array) $route;
         $current = static::$app;
-        foreach (static::$apps as $app) {
+        foreach (static::$apps as $app => $value) {
             if (strpos($route[0], "@{$app}/") === 0) {
                 $route[0] = substr($route[0], strlen($app) + 1);
                 static::$app = $app;
                 if($scheme === false){
                     $scheme = true;
                 }
+                break;
             }
         }
         try {
@@ -50,7 +51,7 @@ class Url extends BaseUrl
      */
     protected static function getUrlManager()
     {
-        if (static::$app !== null && ($manager = Yii::$app->get(static::$app . 'UrlManager', false)) !== null) {
+        if (static::$app !== null && isset(static::$apps[static::$app]) && ($manager = Yii::$app->get(static::$apps[static::$app], false)) !== null) {
             return $manager;
         }
         return parent::getUrlManager();

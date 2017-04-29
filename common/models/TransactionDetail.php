@@ -12,7 +12,7 @@ use Yii;
  * @property string $description
  * @property double $ammount
  */
-class TransactionDetail extends \yii\db\ActiveRecord
+class TransactionDetail extends \common\classes\ActiveRecord
 {
     /**
      * @inheritdoc
